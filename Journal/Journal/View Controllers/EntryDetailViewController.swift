@@ -13,10 +13,26 @@ class EntryDetailViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
     
+    var entry: Entry? {
+        didSet {
+            updateViews()
+        }
+    }
+    var entryController: EntryController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        updateViews()
+    }
+    
+    private func updateViews() {
+        guard isViewLoaded else { return }
+        
+        self.title = entry?.title ?? "Create Entry"
+        titleTextField.text = entry?.title
+        bodyTextView.text = entry?.notes
+        
     }
     
 
@@ -30,6 +46,16 @@ class EntryDetailViewController: UIViewController {
     }
     */
     @IBAction func saveTapped(_ sender: Any) {
+        guard let title = titleTextField.text, !title.isEmpty, let notes = bodyTextView.text, !notes.isEmpty else { return }
+        
+        
+        if let entry = entry {
+            entryController?.Update(entry: entry, title: title, notes: notes)
+        } else {
+            entryController?.Create(title: title, notes: notes)
+        }
+        
+        navigationController?.popToRootViewController(animated: true)
     }
     
 }

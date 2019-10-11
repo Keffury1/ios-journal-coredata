@@ -17,56 +17,46 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EntryCell" id="B6K-iF-M5H" customClass="EntryTableViewCell" customModule="Journal" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="48.5"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="46.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B6K-iF-M5H" id="ULM-WZ-Lvx">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="48.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="46.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMP-fX-PzQ">
-                                            <rect key="frame" x="340" y="15" width="37.5" height="18.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="pb7-Or-Cqy">
-                                            <rect key="frame" x="20" y="3" width="48" height="42"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aOT-BJ-4ZN">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="24"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iyz-p2-hYg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="48" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="rFI-GF-vYS"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iyz-p2-hYg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="24"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbM-e3-gwe">
-                                                    <rect key="frame" x="0.0" y="26" width="48" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMP-fX-PzQ">
+                                                    <rect key="frame" x="343" y="0.0" width="31" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="DbM-e3-gwe" secondAttribute="trailing" id="09b-kh-oj3"/>
-                                                <constraint firstItem="DbM-e3-gwe" firstAttribute="top" secondItem="Iyz-p2-hYg" secondAttribute="bottom" constant="1" id="0W1-W5-6c4"/>
-                                                <constraint firstItem="Iyz-p2-hYg" firstAttribute="top" secondItem="pb7-Or-Cqy" secondAttribute="top" id="Uab-Jd-TqA"/>
-                                                <constraint firstItem="DbM-e3-gwe" firstAttribute="leading" secondItem="pb7-Or-Cqy" secondAttribute="leading" id="bli-CW-w3L"/>
-                                                <constraint firstAttribute="bottom" secondItem="DbM-e3-gwe" secondAttribute="bottom" id="frx-GJ-HGh"/>
-                                                <constraint firstAttribute="trailing" secondItem="Iyz-p2-hYg" secondAttribute="trailing" id="rUx-6n-cYx"/>
-                                                <constraint firstItem="Iyz-p2-hYg" firstAttribute="leading" secondItem="pb7-Or-Cqy" secondAttribute="leading" id="wT4-lu-tGd"/>
-                                            </constraints>
                                         </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbM-e3-gwe">
+                                            <rect key="frame" x="20" y="29" width="375" height="17.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="375" id="vTe-pp-i56"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="wMP-fX-PzQ" secondAttribute="trailing" constant="36.5" id="32S-Cr-2Dc"/>
-                                        <constraint firstAttribute="bottom" secondItem="pb7-Or-Cqy" secondAttribute="bottom" constant="3.5" id="4pz-Oj-4l1"/>
-                                        <constraint firstItem="wMP-fX-PzQ" firstAttribute="top" secondItem="ULM-WZ-Lvx" secondAttribute="top" constant="15" id="CQw-7I-SPe"/>
-                                        <constraint firstItem="pb7-Or-Cqy" firstAttribute="leading" secondItem="ULM-WZ-Lvx" secondAttribute="leading" constant="20" id="PIC-MB-50f"/>
-                                        <constraint firstItem="pb7-Or-Cqy" firstAttribute="top" secondItem="ULM-WZ-Lvx" secondAttribute="top" constant="3" id="Ucc-Fb-7TV"/>
-                                        <constraint firstAttribute="bottom" secondItem="wMP-fX-PzQ" secondAttribute="bottom" constant="15" id="UsU-7k-sjK"/>
-                                        <constraint firstItem="wMP-fX-PzQ" firstAttribute="leading" relation="lessThanOrEqual" secondItem="pb7-Or-Cqy" secondAttribute="trailing" constant="272" id="wZf-td-Zny"/>
+                                        <constraint firstAttribute="bottom" secondItem="DbM-e3-gwe" secondAttribute="bottom" id="4Ir-9s-UQa"/>
+                                        <constraint firstItem="DbM-e3-gwe" firstAttribute="top" secondItem="aOT-BJ-4ZN" secondAttribute="bottom" constant="5" id="Rku-PM-KdO"/>
+                                        <constraint firstItem="aOT-BJ-4ZN" firstAttribute="leading" secondItem="ULM-WZ-Lvx" secondAttribute="leading" constant="20" id="UZA-Tr-MzY"/>
+                                        <constraint firstItem="aOT-BJ-4ZN" firstAttribute="top" secondItem="ULM-WZ-Lvx" secondAttribute="top" id="Zwa-MZ-TK7"/>
+                                        <constraint firstAttribute="trailing" secondItem="aOT-BJ-4ZN" secondAttribute="trailing" constant="20" id="iHB-gB-YUK"/>
+                                        <constraint firstItem="DbM-e3-gwe" firstAttribute="leading" secondItem="aOT-BJ-4ZN" secondAttribute="leading" id="w0V-nB-xcl"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

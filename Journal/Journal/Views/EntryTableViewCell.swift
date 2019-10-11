@@ -14,10 +14,23 @@ class EntryTableViewCell: UITableViewCell {
     @IBOutlet weak var bodyTextLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     
+    var entry: Entry? {
+        didSet {
+            updateViews()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    private func updateViews() {
+        
+        titleLabel.text = entry?.title
+        bodyTextLabel.text = entry?.notes
+        timestampLabel.text = entry?.timestamp
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

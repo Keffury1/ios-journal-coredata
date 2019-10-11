@@ -103,8 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				37E25666235019A300159D1B /* Entry.xcdatamodeld */,
-				37E2566923501A3E00159D1B /* Entry+Convenience.swift */,
 				37E2566E23501EFB00159D1B /* CoreDataStack.swift */,
+				37E2566923501A3E00159D1B /* Entry+Convenience.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
