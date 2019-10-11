@@ -14,6 +14,7 @@
 		37A046982350088C0013C5B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A046962350088C0013C5B7 /* LaunchScreen.storyboard */; };
 		37A046A3235013100013C5B7 /* EntriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A046A2235013100013C5B7 /* EntriesTableViewController.swift */; };
 		37E25663235015BC00159D1B /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E25662235015BC00159D1B /* EntryTableViewCell.swift */; };
+		37E25665235017C300159D1B /* EntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E25664235017C300159D1B /* EntryDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		37A046992350088C0013C5B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37A046A2235013100013C5B7 /* EntriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesTableViewController.swift; sourceTree = "<group>"; };
 		37E25662235015BC00159D1B /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
+		37E25664235017C300159D1B /* EntryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				37A046A2235013100013C5B7 /* EntriesTableViewController.swift */,
+				37E25664235017C300159D1B /* EntryDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				37E25663235015BC00159D1B /* EntryTableViewCell.swift in Sources */,
 				37A046A3235013100013C5B7 /* EntriesTableViewController.swift in Sources */,
 				37A0468C235008870013C5B7 /* AppDelegate.swift in Sources */,
+				37E25665235017C300159D1B /* EntryDetailViewController.swift in Sources */,
 				37A0468E235008870013C5B7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
