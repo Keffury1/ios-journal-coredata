@@ -11,9 +11,7 @@ import CoreData
 
 class EntryController {
     
-    var entries: [Entry] {
-        loadFromPersistentStore()
-    }
+   
     
     func saveToPersistentStore() {
         
@@ -26,19 +24,8 @@ class EntryController {
        
     }
     
-    func loadFromPersistentStore() -> [Entry] {
-        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
-        let moc = CoreDataStack.shared.mainContext
-        do {
-            let allEntries = try moc.fetch(fetchRequest)
-            return allEntries
-        } catch {
-            print("Error fetching entries: \(error)")
-            return []
-        }
-    }
     
-    func Create(title: String, notes: String? = nil) {
+    func Create(title: String, notes: String? = nil, mood: EntryMood) {
         
         let date = Date()
         let formatter = DateFormatter()
@@ -47,13 +34,13 @@ class EntryController {
         let result = formatter.string(from: date)
 
         
-        let _ = Entry(title: title, notes: notes, timestamp: result)
+        let _ = Entry(title: title, notes: notes, mood: mood, timestamp: result)
        
         
         saveToPersistentStore()
     }
     
-    func Update(entry: Entry, title: String, notes: String, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    func Update(entry: Entry, title: String, notes: String, mood: EntryMood) {
         
         let date = Date()
         let formatter = DateFormatter()
@@ -64,6 +51,7 @@ class EntryController {
         entry.title = title
         entry.notes = notes
         entry.timestamp = result
+        entry.mood = mood.rawValue
         
         saveToPersistentStore()
         

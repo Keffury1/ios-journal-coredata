@@ -30,6 +30,7 @@
 		37A046972350088C0013C5B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37A046992350088C0013C5B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37A046A2235013100013C5B7 /* EntriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesTableViewController.swift; sourceTree = "<group>"; };
+		37D588692350E50E00849376 /* Entry 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Entry 2.xcdatamodel"; sourceTree = "<group>"; };
 		37E25662235015BC00159D1B /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
 		37E25664235017C300159D1B /* EntryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailViewController.swift; sourceTree = "<group>"; };
 		37E25667235019A300159D1B /* Entry.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Entry.xcdatamodel; sourceTree = "<group>"; };
@@ -405,9 +406,10 @@
 		37E25666235019A300159D1B /* Entry.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				37D588692350E50E00849376 /* Entry 2.xcdatamodel */,
 				37E25667235019A300159D1B /* Entry.xcdatamodel */,
 			);
-			currentVersion = 37E25667235019A300159D1B /* Entry.xcdatamodel */;
+			currentVersion = 37D588692350E50E00849376 /* Entry 2.xcdatamodel */;
 			path = Entry.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
