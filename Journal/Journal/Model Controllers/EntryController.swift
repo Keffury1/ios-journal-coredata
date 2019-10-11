@@ -11,7 +11,24 @@ import CoreData
 
 class EntryController {
     
-   
+    typealias CompletionHandler = (Error?) -> Void
+    
+    let baseURL = URL(string: "https://journal-5acd6.firebaseio.com/")!
+    
+    
+    
+//    func put(entry: Entry, completion: @escaping CompletionHandler = { _ in }) {
+//        
+//        let identifier = entry.identifier ?? UUID()
+//        
+//        let requestURL = baseURL.appendingPathComponent(identifier.uuidString).appendingPathExtension("json")
+//        var request = URLRequest(url: requestURL)
+//        request.httpMethod = "PUT"
+//        
+//        do {
+//        
+//        }
+//    }
     
     func saveToPersistentStore() {
         
