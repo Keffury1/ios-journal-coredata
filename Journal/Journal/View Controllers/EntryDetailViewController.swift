@@ -61,7 +61,7 @@ class EntryDetailViewController: UIViewController {
     }
     */
     @IBAction func saveTapped(_ sender: Any) {
-        guard let title = titleTextField.text, !title.isEmpty, let notes = bodyTextView.text, !notes.isEmpty else{ return }
+        guard let title = titleTextField.text, !title.isEmpty, let notes = bodyTextView.text, !notes.isEmpty else { return }
         
         let moodIndex = moodSegmentControl.selectedSegmentIndex
         let mood = EntryMood.allCases[moodIndex]
@@ -70,6 +70,14 @@ class EntryDetailViewController: UIViewController {
             entryController?.Update(entry: entry, title: title, notes: notes, mood: mood)
         } else {
             entryController?.Create(title: title, notes: notes, mood: mood)
+        }
+        
+        do {
+            let moc = CoreDataStack.shared.mainContext
+            try moc.save()
+            
+        } catch {
+            print("Error saving managed object context: \(error)")
         }
         
         navigationController?.popToRootViewController(animated: true)

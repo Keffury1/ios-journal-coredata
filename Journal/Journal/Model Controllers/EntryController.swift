@@ -33,6 +33,8 @@ class EntryController {
             representation.identifier = identifier.uuidString
             entry.identifier = identifier
             
+            try CoreDataStack.shared.save()
+            
             request.httpBody = try JSONEncoder().encode(representation)
         
         } catch {
@@ -88,7 +90,6 @@ class EntryController {
     }
     
     
-    
     func deleteEntryFromServer(_ entry: Entry, completion: @escaping CompletionHandler = { _ in }) {
         guard let identifier = entry.identifier else {
             completion(nil)
@@ -107,20 +108,6 @@ class EntryController {
     }
     
     
-    
-    func saveToPersistentStore() {
-        
-        do {
-            let moc = CoreDataStack.shared.mainContext
-            try moc.save()
-        } catch {
-            print("Error saving managed object context: \(error)")
-        }
-       
-    }
-    
-    
-    
     func Create(title: String, notes: String? = nil, mood: EntryMood) {
         
         let date = Date()
@@ -134,9 +121,8 @@ class EntryController {
        
         put(entry: entry)
         
-        saveToPersistentStore()
+        
     }
-    
     
     
     func Update(entry: Entry, title: String, notes: String, mood: EntryMood) {
@@ -154,7 +140,6 @@ class EntryController {
         
         put(entry: entry)
         
-        saveToPersistentStore()
         
     }
     
@@ -188,17 +173,18 @@ class EntryController {
                     
                     entriesToCreate.removeValue(forKey: id)
                 }
-                self.saveToPersistentStore()
                 
                 for representation in entriesToCreate.values {
                     let _ = Entry(entryRepresentation: representation, context: context)
                 }
-                self.saveToPersistentStore()
-                
             } catch {
                 print("Error fetching tasks for UUIDs: \(error)")
             }
         }
+        
+        try CoreDataStack.shared.save(context: context)
+        
+        
     }
     
     

@@ -28,12 +28,6 @@ class EntriesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +35,19 @@ class EntriesTableViewController: UITableViewController {
         
         tableView.reloadData()
     }
+    
+    
+    @IBAction func refresh(_ sender: Any) {
+        
+        entryController.fetchEntriesFromServer { (_) in
+            DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
+            }
+            
+        }
+        
+    }
+    
 
     // MARK: - Table view data source
 
@@ -94,9 +101,7 @@ class EntriesTableViewController: UITableViewController {
                     print("Error saving managed object: \(error)")
                 }
             }
-            entryController.saveToPersistentStore()
         }
-        
     }
 
 
