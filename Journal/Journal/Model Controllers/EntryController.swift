@@ -17,18 +17,58 @@ class EntryController {
     
     
     
-//    func put(entry: Entry, completion: @escaping CompletionHandler = { _ in }) {
-//        
-//        let identifier = entry.identifier ?? UUID()
-//        
-//        let requestURL = baseURL.appendingPathComponent(identifier.uuidString).appendingPathExtension("json")
-//        var request = URLRequest(url: requestURL)
-//        request.httpMethod = "PUT"
-//        
-//        do {
-//        
-//        }
-//    }
+    func put(entry: Entry, completion: @escaping CompletionHandler = { _ in }) {
+        
+        let identifier = entry.identifier ?? UUID()
+        
+        let requestURL = baseURL.appendingPathComponent(identifier.uuidString).appendingPathExtension("json")
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "PUT"
+        
+        do {
+            guard var representation = entry.entryRepresentation else {
+                completion(nil)
+                return
+            }
+            representation.identifier = identifier.uuidString
+            entry.identifier = identifier
+            
+            request.httpBody = try JSONEncoder().encode(representation)
+        
+        } catch {
+            print("Error encoding entry: \(error)")
+            completion(error)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, _, error) in
+            
+            if let error = error {
+                print("Error PUTting entry to server: \(error)")
+                completion(error)
+                return
+            }
+            
+            completion(nil)
+        }.resume()
+    }
+    
+    func deleteEntryFromServer(_ entry: Entry, completion: @escaping CompletionHandler = { _ in }) {
+        guard let identifier = entry.identifier else {
+            completion(nil)
+            return
+        }
+        
+        let requestURL = baseURL.appendingPathComponent(identifier.uuidString).appendingPathExtension("json")
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "DELETE"
+        
+        URLSession.shared.dataTask(with: request) { (_, _, error) in
+            print("Deleted entry with UUID: \(identifier.uuidString)")
+            
+            completion(error)
+        }.resume()
+    }
     
     func saveToPersistentStore() {
         
@@ -51,8 +91,9 @@ class EntryController {
         let result = formatter.string(from: date)
 
         
-        let _ = Entry(title: title, notes: notes, mood: mood, timestamp: result)
+        let entry = Entry(title: title, notes: notes, mood: mood, timestamp: result)
        
+        put(entry: entry)
         
         saveToPersistentStore()
     }
@@ -69,6 +110,8 @@ class EntryController {
         entry.notes = notes
         entry.timestamp = result
         entry.mood = mood.rawValue
+        
+        put(entry: entry)
         
         saveToPersistentStore()
         
