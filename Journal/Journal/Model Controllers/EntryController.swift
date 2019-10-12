@@ -15,7 +15,7 @@ class EntryController {
     
     let baseURL = URL(string: "https://journal-5acd6.firebaseio.com/")!
     
-    
+   
     
     func put(entry: Entry, completion: @escaping CompletionHandler = { _ in }) {
         
@@ -53,6 +53,42 @@ class EntryController {
         }.resume()
     }
     
+    
+    func fetchEntriesFromServer(completion: @escaping (Error?) -> Void = { _ in }) {
+        
+        let requestURL = baseURL.appendingPathExtension("json")
+        
+        URLSession.shared.dataTask(with: requestURL) { (data, _, error) in
+            
+            if let error = error {
+                print("Error fetching entries: \(error)")
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                print("No data returned by the data task")
+                completion(nil)
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let dictionaryOfEntries = try decoder.decode([String: EntryRepresentation].self, from: data)
+                let entryRepresentations = Array(dictionaryOfEntries.values)
+                try self.updateEntries(with: entryRepresentations)
+                completion(nil)
+                
+            } catch {
+                print("Error decoding entry representations: \(error)")
+                completion(error)
+                return
+            }
+        }.resume()
+    }
+    
+    
+    
     func deleteEntryFromServer(_ entry: Entry, completion: @escaping CompletionHandler = { _ in }) {
         guard let identifier = entry.identifier else {
             completion(nil)
@@ -70,6 +106,8 @@ class EntryController {
         }.resume()
     }
     
+    
+    
     func saveToPersistentStore() {
         
         do {
@@ -80,6 +118,7 @@ class EntryController {
         }
        
     }
+    
     
     
     func Create(title: String, notes: String? = nil, mood: EntryMood) {
@@ -98,6 +137,8 @@ class EntryController {
         saveToPersistentStore()
     }
     
+    
+    
     func Update(entry: Entry, title: String, notes: String, mood: EntryMood) {
         
         let date = Date()
@@ -114,6 +155,61 @@ class EntryController {
         put(entry: entry)
         
         saveToPersistentStore()
+        
+    }
+    
+    
+    func updateEntries(with representations: [EntryRepresentation]) throws {
+        
+        let entriesWithID = representations.filter({ $0.identifier != nil })
+        
+        let identifiersToFetch = entriesWithID.compactMap({ UUID(uuidString: $0.identifier!) })
+        
+        let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, entriesWithID))
+        
+        var entriesToCreate = representationsByID
+        
+        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "identifier in %@", identifiersToFetch)
+        
+        let context = CoreDataStack.shared.container.newBackgroundContext()
+        
+        context.perform {
+            do {
+                
+                let existingEntries = try context.fetch(fetchRequest)
+                
+                for entry in existingEntries {
+                    guard let id = entry.identifier,
+                        let representation = representationsByID[id] else {
+                            continue
+                    }
+                    self.update(entry: entry, entryRepresentation: representation)
+                    
+                    entriesToCreate.removeValue(forKey: id)
+                }
+                self.saveToPersistentStore()
+                
+                for representation in entriesToCreate.values {
+                    let _ = Entry(entryRepresentation: representation, context: context)
+                }
+                self.saveToPersistentStore()
+                
+            } catch {
+                print("Error fetching tasks for UUIDs: \(error)")
+            }
+        }
+    }
+    
+    
+    func update(entry: Entry, entryRepresentation: EntryRepresentation) {
+        
+        let mood = EntryMood(stringName: entryRepresentation.mood) ?? EntryMood.😐
+        
+        entry.title = entryRepresentation.title
+        entry.notes = entryRepresentation.notes
+        entry.timestamp = entryRepresentation.timestamp
+        entry.mood = mood.rawValue
         
     }
     
